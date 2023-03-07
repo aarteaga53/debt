@@ -1,15 +1,20 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css'
 
 const Navbar = () => {
+  let locate = useLocation()
+
   return (
     <div className='nav'>
       <div className='app-name'>Debt Collector</div>
-      <div className='nav-links'>
-        <div className='nav-link'>Home</div>
-        <div className='nav-link'>Debt</div>
-        <div className='nav-link'>Logout</div>
-      </div>
+      {locate.pathname.includes('auth') ? null : 
+        (<div className='nav-links'>
+          <Link to='/home' className='nav-link'>Home</Link>
+          <Link to='/debt' className='nav-link'>Debt</Link>
+          <Link to='/' className='nav-link'>Logout</Link>
+        </div>)
+      }
     </div>
   )
 }

@@ -2,9 +2,17 @@
   --black: #222222;
   --green: #416d3e;
   --light-grn: #d9e8d8;
-  --dark-grn: #152414;
+  --dark-grn: #1b2f1a;
 }
 
 body {
   font-family: 'Ubuntu', sans-serif;
+}
+
+.page-body {
+  position: relative;
+  top: 5vh;
+  height: 95vh;
+  width: 100vw;
+  background-color: var(--light-grn);
 }

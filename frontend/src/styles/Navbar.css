@@ -6,6 +6,7 @@
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 
 .app-name {
@@ -30,6 +31,7 @@
     border-radius: 4px;
     color: var(--black);
     transition-duration: 0.3s;
+    text-decoration: none;
 }
 
 .nav-link:last-of-type {
