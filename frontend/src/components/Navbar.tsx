@@ -5,13 +5,23 @@ import '../styles/Navbar.css'
 const Navbar = () => {
   let locate = useLocation()
 
+  /**
+     * checks if path given is currently selected
+     * 
+     * @param {*} path 
+     * @returns a class name for the currently selected path
+     */
+  let isCurrent = (path: string): string => {
+    return locate.pathname.includes(path) ? 'current nav-link' : 'nav-link'
+  }
+
   return (
     <div className='nav'>
       <div className='app-name'>Debt Collector</div>
       {locate.pathname.includes('auth') ? null : 
         (<div className='nav-links'>
-          <Link to='/home' className='nav-link'>Home</Link>
-          <Link to='/debt' className='nav-link'>Debt</Link>
+          <Link to='/home' className={isCurrent('home')}>Home</Link>
+          <Link to='/debt' className={isCurrent('debt')}>Debt</Link>
           <Link to='/' className='nav-link'>Logout</Link>
         </div>)
       }

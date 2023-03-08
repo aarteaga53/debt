@@ -16,3 +16,7 @@ body {
   width: 100vw;
   background-color: var(--light-grn);
 }
+
+@media only screen and (min-width: 769px) and (max-width: 1800px)  {
+  .page-body { top: 8vh; height: 92vh; }
+}
