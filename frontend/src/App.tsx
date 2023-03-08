@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Auth from './components/Auth';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Home from './components/Home';
 import Debt from './components/Debt';
+import Landing from './components/Landing';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -64,7 +65,7 @@ function App() {
         <div>
           <Navbar />
           <Routes>
-            <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
+            <Route path='' element={<Landing />}></Route>
             <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
             <Route path='home' element={<Home user={user} />}></Route>
             <Route path='debt' element={<Debt />}></Route>

@@ -18,13 +18,16 @@ const Navbar = () => {
   return (
     <div className='nav'>
       <div className='app-name'>Debt Collector</div>
-      {locate.pathname.includes('auth') ? null : 
+      {locate.pathname.includes('auth') || locate.pathname === '/' ? null : 
         (<div className='nav-links'>
           <Link to='/home' className={isCurrent('home')}>Home</Link>
           <Link to='/debt' className={isCurrent('debt')}>Debt</Link>
           <Link to='/' className='nav-link'>Logout</Link>
-        </div>)
-      }
+        </div>)}
+      {locate.pathname === '/' ? 
+      (<div className='auth-links'>
+        <Link to='/auth' className='current nav-link'>Sign in</Link>
+      </div>) : null}
     </div>
   )
 }

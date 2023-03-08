@@ -95,13 +95,6 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
   return (
     <div className='auth-body'>
       <div className='auth-box'>
-        <div className='auth-welcome'>
-          <div className='welcome-title'>Welcome to Debt Collector</div>
-          <ul>
-            <li>Keep track of debts</li>
-            <li>Split expenses</li>
-          </ul>
-        </div>
         <form className='auth-form' onSubmit={isSignup ? signup : signin}>
           <div className='auth-title'>{isSignup ? 'Sign Up' : 'Sign In'}</div>
           <div className='auth-inputs'>
