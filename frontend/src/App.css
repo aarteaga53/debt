@@ -34,13 +34,43 @@ body {
   position: relative;
   display: block;
   width: calc(175% + 1.3px);
-  height: 500px;
+  height: 35vh;
 }
 
 .wave .shape-fill {
   fill: var(--green);
 }
 
+.wave-opacity {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.wave-opacity svg {
+  position: relative;
+  display: block;
+  width: calc(150% + 1.3px);
+  height: 35vh;
+}
+
+.wave-opacity .shape-fill {
+  fill: var(--green);
+}
+
+@media only screen and (max-width: 768px)  {
+  .page-body { top: 10vh; height: 90vh; }
+  
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1800px)  {
   .page-body { top: 8vh; height: 92vh; }
+
+  .wave svg { height: 25vh; }
+
+  .wave-opacity svg { height: 25vh; }
 }

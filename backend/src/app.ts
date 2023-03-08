@@ -1,15 +1,16 @@
 require('dotenv').config({ path: './config.env' })
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import dbo from '../db/conn'
+import dbRoutes from '../routes/record'
 
-const express = require('express')
-const cors = require('cors')
 const app = express()
 const port = 8000
-const dbo = require('./db/conn')
-const dbRoutes = require('./routes/record.js')
 
 app.use(cors())
-app.use(require('body-parser').json())
-app.use(require('body-parser').urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', dbRoutes)
 
 app.get('/hello', (req, res) => {
@@ -17,7 +18,7 @@ app.get('/hello', (req, res) => {
 })
 
 // perform a database connection when the server starts
-dbo.connectToServer(function (err) {
+dbo.connectToServer((err: any) => {
 	if (err) {
 	  console.error(err)
 	  process.exit()

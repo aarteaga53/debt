@@ -1,9 +1,9 @@
 require('dotenv').config({ path: '../config.env' })
 
-const express = require('express')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const ObjectId = require('mongodb').ObjectId
+import express from 'express'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { ObjectId } from 'mongodb'
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -11,7 +11,7 @@ const ObjectId = require('mongodb').ObjectId
 const recordRoutes = express.Router()
 
 // This will help us connect to the database
-const dbo = require('../db/conn')
+import dbo from '../db/conn'
 
 // verify user exists
 recordRoutes.route('/verify').post(async (req, res) => {
@@ -75,15 +75,12 @@ recordRoutes.route('/user').post(async (req, res) => {
 
   try {
     const verify = jwt.verify(token, process.env.JWT_SECRET)
-    const dbConnect = dbo.getDb()
-    const collection = dbConnect.collection('users')
-    const user = await collection.findOne({ _id: new ObjectId(verify._id) })
 
-    res.json(user)
+    res.json(verify)
   } catch(err) {
     console.log(err)
     res.json({ msg: 'error' })
   }
 })
 
-module.exports = recordRoutes
+export default recordRoutes
