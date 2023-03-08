@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Auth from './components/Auth';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Home from './components/Home';
+import Debt from './components/Debt';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -66,6 +67,7 @@ function App() {
             <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
             <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
             <Route path='home' element={<Home user={user} />}></Route>
+            <Route path='debt' element={<Debt />}></Route>
           </Routes>
         </div>
       </Router>

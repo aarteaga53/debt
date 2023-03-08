@@ -1,6 +1,7 @@
 :root {
   --black: #222222;
   --green: #416d3e;
+  --box-grn: #78b075;
   --light-grn: #d9e8d8;
   --dark-grn: #1b2f1a;
 }
@@ -15,6 +16,29 @@ body {
   height: 95vh;
   width: 100vw;
   background-color: var(--light-grn);
+  display: flex;
+  justify-content: center;
+}
+
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.wave svg {
+  position: relative;
+  display: block;
+  width: calc(175% + 1.3px);
+  height: 500px;
+}
+
+.wave .shape-fill {
+  fill: var(--green);
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1800px)  {
