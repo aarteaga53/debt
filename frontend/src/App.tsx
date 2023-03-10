@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Auth from './components/Auth';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Home from './components/Home';
-import Debt from './components/Debt';
 import Landing from './components/Landing';
+import Finance from './components/Finance';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -34,11 +34,11 @@ function App() {
 
     let getUser = async (temp: string) => {
       let response = await fetch(`http://127.0.0.1:8000/user`, {
-          method: 'POST',
-          headers: {
-              'Content-type': 'application/json'
-          },
-          body: JSON.stringify({ token: temp })
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ token: temp })
       })
   
       let data = await response.json()
@@ -68,7 +68,7 @@ function App() {
             <Route path='' element={<Landing />}></Route>
             <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
             <Route path='home' element={<Home user={user} />}></Route>
-            <Route path='debt' element={<Debt />}></Route>
+            <Route path='finance' element={<Finance />}></Route>
           </Routes>
         </div>
       </Router>

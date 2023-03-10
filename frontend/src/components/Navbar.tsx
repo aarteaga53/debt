@@ -21,7 +21,7 @@ const Navbar = () => {
       {locate.pathname.includes('auth') || locate.pathname === '/' ? null : 
         (<div className='nav-links'>
           <Link to='/home' className={isCurrent('home')}>Home</Link>
-          <Link to='/debt' className={isCurrent('debt')}>Debt</Link>
+          <Link to='/finance' className={isCurrent('finance')}>Finance</Link>
           <Link to='/' className='nav-link'>Logout</Link>
         </div>)}
       {locate.pathname === '/' ? 
