@@ -17,8 +17,7 @@
     text-align: center;
     padding: 50px 75px;
     background-color: whitesmoke;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-radius: 4px;
 }
 
 .auth-title {
@@ -32,18 +31,36 @@
     flex-direction: column;
 }
 
-.auth-buttons {
-    margin-top: 15px;
+.auth-options {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
 }
 
-.auth-buttons Button {
-    margin-right: 10px;
+.forgot:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--green);
 }
 
-.auth-buttons Button:last-of-type {
-    margin-right: 0;
+.register {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.register-option {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.register-option:hover {
+    cursor: pointer;
+    color: var(--green);
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1800px)  {
     .auth-form { padding: 25px 50px; }
+
+    .auth-options { margin: 5px 0; }
 }

@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -99,16 +99,34 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
           <div className='auth-title'>{isSignup ? 'Sign Up' : 'Sign In'}</div>
           <div className='auth-inputs'>
             {isSignup ? (<>
-              <TextField id='first' name='first' label='First Name' type='text' margin='normal' required />
-              <TextField id='last' name='last' label='Last Name' type='text' margin='normal' required />
+              <TextField variant='standard' id='first' name='first' label='First Name' type='text' margin='normal' required />
+              <TextField variant='standard' id='last' name='last' label='Last Name' type='text' margin='normal' required />
             </>) : null}
-            <TextField id='email' name='email' label='Email' type='email' margin='normal' required />
-            <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
+            <TextField variant='standard' id='email' name='email' label='Email' type='email' margin='normal' required />
+            <TextField variant='standard' id='password' name='password' label='Password' type='password' margin='normal' required />
           </div>
-          <div className='auth-buttons'>
-            <Button variant='outlined' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
-            <Button variant='outlined' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+          <div className='auth-options'>
+            <FormGroup>
+              {isSignup ? (
+                <FormControlLabel control={<Checkbox size='small' required />} label="I agree to the terms & conditions." />
+              ) : (
+                <FormControlLabel control={<Checkbox size='small' />} label="Remember me" />
+              )}
+            </FormGroup>
+            {isSignup ? null : (<div className='forgot'>Forgot Password?</div>)}
           </div>
+          <Button variant='contained' type='submit' fullWidth>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+          {isSignup ? (
+            <div className='register'>
+              <div>Already have an account?</div>
+              <div className='register-option' onClick={toggleAuth}>Sign In</div>
+            </div>
+          ) : (
+            <div className='register'>
+              <div>Don't have an account?</div>
+              <div className='register-option' onClick={toggleAuth}>Register</div>
+            </div>
+          )}
         </form>
       </div>
       <div className='wave'>

@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>)}
       {locate.pathname === '/' ? 
       (<div className='auth-links'>
-        <Link to='/auth' className='current nav-link'>Sign in</Link>
+        <Link to='/auth' className='current nav-link'>Sign In</Link>
       </div>) : null}
     </div>
   )
