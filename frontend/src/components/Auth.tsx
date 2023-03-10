@@ -1,11 +1,16 @@
-import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, IconButton, InputAdornment, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/Auth.css'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Visibility from '@mui/icons-material/Visibility'
+import Email from '@mui/icons-material/Email'
+import Person from '@mui/icons-material/Person'
 
 const Auth = (props: any) => {
   let [isSignup, setIsSignup] = useState(false)
+  let [showPassword, setShowPassword] = useState(false)
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -48,8 +53,7 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
     event.preventDefault()
     const form = new FormData(event.currentTarget);
     const newUser = {
-        first: form.get('first'), 
-        last: form.get('last'), 
+        username: form.get('username'), 
         email: form.get('email'), 
         password: form.get('password')
     }
@@ -92,6 +96,10 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
     navigate('/home')
   }
 
+  let toggleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <div className='auth-body'>
       <div className='auth-box'>
@@ -99,11 +107,40 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
           <div className='auth-title'>{isSignup ? 'Sign Up' : 'Sign In'}</div>
           <div className='auth-inputs'>
             {isSignup ? (<>
-              <TextField variant='standard' id='first' name='first' label='First Name' type='text' margin='normal' required />
-              <TextField variant='standard' id='last' name='last' label='Last Name' type='text' margin='normal' required />
+              <TextField variant='standard' id='username' name='username' label='Username' type='text' margin='normal' required 
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton size='small' disabled>
+                        <Person />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </>) : null}
-            <TextField variant='standard' id='email' name='email' label='Email' type='email' margin='normal' required />
-            <TextField variant='standard' id='password' name='password' label='Password' type='password' margin='normal' required />
+            <TextField variant='standard' id='email' name='email' label='Email' type='email' margin='normal' required 
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <IconButton size='small' disabled>
+                      <Email />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField variant='standard' id='password' name='password' label='Password' type={showPassword ? 'text' : 'password'} margin='normal' required
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <IconButton size='small' onClick={toggleShowPassword}>
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+             />
           </div>
           <div className='auth-options'>
             <FormGroup>

@@ -46,8 +46,7 @@ recordRoutes.route('/register').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('users')
   const newUser = {
-    first: req.body.first,
-    last: req.body.last,
+    first: req.body.username,
     email: req.body.email,
     password: req.body.password
   }
