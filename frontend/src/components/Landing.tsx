@@ -1,14 +1,24 @@
 import React from 'react'
+import track from '../images/track.png'
+import split from '../images/split.png'
+import manage from '../images/manage.png'
 
 const Landing = () => {
   return (
-    <div className='auth-body'>
-      <div className='welcome'>
-        <div className='welcome-title'>Welcome to Debt Collector</div>
-        <ul>
-          <li>Keep track of debts</li>
-          <li>Split expenses</li>
-        </ul>
+    <div className='landing-body'>
+      <div className='about'>
+        <div className='about-box'>
+          <img className='icon-image' src={manage} alt='manage' />
+          <div className='info'>Manage money</div>
+        </div>
+        <div className='about-box'>
+          <img className='icon-image' src={track} alt='track' />
+          <div className='info'>Track debts</div>
+        </div>
+        <div className='about-box'>
+          <img className='icon-image' src={split} alt='split' />
+          <div className='info'>Split expenses</div>
+        </div>
       </div>
       <div className='wave'>
         <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>

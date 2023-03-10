@@ -21,21 +21,37 @@ body {
   justify-content: center;
 }
 
-.welcome {
-  width: 30vw;
-  height: 30vh;
-  background-color: var(--box-grn);
+.landing-body {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--light-grn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about {
+  width: 60vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 4px;
 }
 
-.welcome-title {
+.icon-image {
+  border-radius: 50%;
+  height: 20vh;
+  width: 20vh;
+  object-fit: cover;
+}
+
+.info {
+  margin-top: 25px;
   font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 25px;
 }
 
 .wave {
