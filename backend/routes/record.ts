@@ -13,6 +13,44 @@ const recordRoutes = express.Router()
 // This will help us connect to the database
 import dbo from '../db/conn'
 
+recordRoutes.route('/debts/insert').post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('debts')
+  const newDebt: { amount: number, note: string, date: Date, username: string, _id?: string} = {
+    amount: parseFloat(req.body.amount),
+    note: req.body.note,
+    date: new Date(req.body.date),
+    username: req.body.username
+  }
+
+  try {
+    const result = await collection.insertOne(newDebt)
+    
+    if(result.insertedId) {
+      newDebt._id = result.insertedId
+      res.json(newDebt)
+    } else {
+      res.json({ msg: 'error' })
+    }
+  } catch(err) {
+    res.json({ msg: 'error' })
+  }
+})
+
+recordRoutes.route('/debts/:username').get(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('debts')
+  const username = { username: req.params.username }
+
+  try {
+    const debts = await collection.find(username).toArray()
+
+    res.json(debts)
+  } catch(err) {
+    res.status(400).send('Error fetching tasks!')
+  }
+})
+
 // verify user exists
 recordRoutes.route('/verify').post(async (req, res) => {
   const dbConnect = dbo.getDb()
@@ -22,7 +60,7 @@ recordRoutes.route('/verify').post(async (req, res) => {
   try {
     const user = await collection.findOne(cred)
     
-    if(user !== null) {
+    if(user) {
       const isMatch = await bcrypt.compare(req.body.password, user.password)
 
       if(!isMatch) {
@@ -46,12 +84,19 @@ recordRoutes.route('/register').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('users')
   const newUser = {
-    first: req.body.username,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password
   }
 
   try {
+    const user = await collection.findOne({ $or: [{ username: newUser.username }, { email: newUser.email }]})
+
+    if(user) {
+      res.json({ err: 'error'})
+      return
+    }
+
     const salt = await bcrypt.genSalt()
     const passwordHash = await bcrypt.hash(newUser.password, salt)
     

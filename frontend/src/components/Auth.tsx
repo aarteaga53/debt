@@ -8,27 +8,35 @@ import Visibility from '@mui/icons-material/Visibility'
 import Email from '@mui/icons-material/Email'
 import Person from '@mui/icons-material/Person'
 
-const Auth = (props: any) => {
-  let [isSignup, setIsSignup] = useState(false)
-  let [showPassword, setShowPassword] = useState(false)
+interface User {
+  _id?: string,
+  username?: string,
+  email?: string,
+  password?: string,
+  iat?: number
+}
+
+const Auth = ({ setToken, setUser}: {setToken: React.Dispatch<React.SetStateAction<string>>, setUser: React.Dispatch<React.SetStateAction<User>>}) => {
+  let [isSignup, setIsSignup] = useState<boolean>(false)
+  let [showPassword, setShowPassword] = useState<boolean>(false)
   let navigate = useNavigate()
 
   useEffect(() => {
     let removeToken = () => {
         window.localStorage.removeItem('token')
-        props.setToken(null)
-        props.setUser(null)
+        setToken('')
+        setUser({})
     }
 
     removeToken()
-}, [props])
+}, [setToken, setUser])
 
   /**
      * allows the user to signin
      */
   let signin = async (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined }) => {
     event.preventDefault()
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(event.currentTarget)
     const user = {email: form.get('email'), password: form.get('password')}
     
     let response = await fetch(`http://127.0.0.1:8000/verify`, {
@@ -51,7 +59,7 @@ const Auth = (props: any) => {
  */
 let signup = async (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined }) => {
     event.preventDefault()
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(event.currentTarget)
     const newUser = {
         username: form.get('username'), 
         email: form.get('email'), 
@@ -76,27 +84,27 @@ let signup = async (event: { preventDefault: () => void; currentTarget: HTMLForm
   /**
      * changes between signin and signup inputs
      */
-  let toggleAuth = () => {
+  let toggleAuth = (): void => {
     setIsSignup(!isSignup)
   }
 
-  let navigateHome = async (token: Object) => {
+  let navigateHome = async (token: string) => {
     let response = await fetch(`http://127.0.0.1:8000/user`, {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json'
+          'Content-type': 'application/json'
         },
         body: JSON.stringify({ token: token })
     })
 
     let data = await response.json()
-    props.setUser(data)
+    setUser(data)
     window.localStorage.setItem('token', JSON.stringify(token))
-    props.setToken(token)
+    setToken(token)
     navigate('/home')
   }
 
-  let toggleShowPassword = () => {
+  let toggleShowPassword = (): void => {
     setShowPassword(!showPassword)
   }
 

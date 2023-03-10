@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'
 import '../styles/Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({setIsSignedIn}: {setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>}) => {
   let locate = useLocation()
 
   /**
@@ -15,6 +15,11 @@ const Navbar = () => {
     return locate.pathname.includes(path) ? 'current nav-link' : 'nav-link'
   }
 
+  let logout = (): void => {
+    window.localStorage.removeItem('token')
+    setIsSignedIn(false)
+  }
+
   return (
     <div className='nav'>
       <div className='app-name'>Debt Collector</div>
@@ -22,7 +27,7 @@ const Navbar = () => {
         (<div className='nav-links'>
           <Link to='/home' className={isCurrent('home')}>Home</Link>
           <Link to='/finance' className={isCurrent('finance')}>Finance</Link>
-          <Link to='/' className='nav-link'>Logout</Link>
+          <Link to='/' className='nav-link' onClick={logout}>Logout</Link>
         </div>)}
       {locate.pathname === '/' ? 
       (<div className='auth-links'>

@@ -1,9 +1,17 @@
 import React from 'react'
 
-const Home = (props: any) => {
+interface User {
+  _id?: string,
+  username?: string,
+  email?: string,
+  password?: string,
+  iat?: number
+}
+
+const Home = ({ user }: { user: User}) => {
   return (
     <div className='page-body'>
-      {props.user ? (<div>{`Hello ${props.user.username}`}</div>) : (<div>Hello</div>)}
+      {user ? (<div>{`Hello ${user.username}`}</div>) : (<div>Hello</div>)}
     </div>
   )
 }

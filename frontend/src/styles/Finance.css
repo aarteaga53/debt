@@ -48,9 +48,57 @@
 }
 
 .col-1 {
-    flex: 90%;
+    flex: 30%;
 }
 
 .col-2 {
-    flex: 10%;
+    flex: 50%;
+}
+
+.col-3 {
+    flex: 20%;
+}
+
+.insert {
+    width: 30vw;
+    height: 5vh;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    background-color: var(--black);
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
+    border-radius: 8px;
+    color: white;
+}
+
+.insert-input {
+    position: relative;
+    width: 70%;
+    background-color: transparent;
+    border: 2px solid var(--light-grn);
+    border-radius: 8px;
+    color: white;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.insert-input:focus {
+    outline: none;
+}
+
+.insert button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid var(--light-grn);
+    padding: 3px 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    transition-duration: 0.3s;
+    font-size: 20px;
+}
+
+.insert button:hover {
+    background-color: var(--light-grn);
+    color: var(--black);
+    cursor: pointer;
 }
