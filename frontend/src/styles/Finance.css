@@ -40,6 +40,7 @@
 }
 
 .table-row {
+    position: relative;
     color: white;
     list-style-type: none;
     display: flex;
@@ -47,21 +48,34 @@
     border-bottom: 1px solid var(--light-grn);
 }
 
+.debt-icon {
+    position: absolute;
+}
+
+.debt-icon:hover {
+    cursor: pointer;
+    color: red;
+}
+
 .col-1 {
-    flex: 30%;
+    flex: 25%;
 }
 
 .col-2 {
-    flex: 50%;
+    flex: 55%;
 }
 
 .col-3 {
-    flex: 20%;
+    flex: 15%;
+}
+
+.col-4 {
+    flex: 5%;
 }
 
 .insert {
     width: 30vw;
-    height: 5vh;
+    height: 4vh;
     margin-top: 15px;
     display: flex;
     align-items: center;
@@ -79,7 +93,11 @@
     border-radius: 8px;
     color: white;
     margin: 0 5px;
-    padding: 5px;
+    padding: 10px;
+}
+
+.insert-input:nth-child(1) {
+    margin-left: 25px;
 }
 
 .insert-input:focus {
@@ -90,8 +108,8 @@
     background-color: transparent;
     color: white;
     border: 2px solid var(--light-grn);
-    padding: 3px 10px;
-    margin-right: 10px;
+    padding: 5px 10px;
+    margin-right: 25px;
     border-radius: 8px;
     transition-duration: 0.3s;
     font-size: 20px;
@@ -101,4 +119,10 @@
     background-color: var(--light-grn);
     color: var(--black);
     cursor: pointer;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1800px)  {
+    .table-container { width: 50vw; }
+
+    .insert { width: 50vw; height: 6vh; }
 }

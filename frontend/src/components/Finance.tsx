@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Finance.css'
-
+import DeleteOutline from '@mui/icons-material/DeleteOutline'
 
 interface User {
   _id?: string,
@@ -91,6 +91,7 @@ const Finance = ({ user }: { user: User}) => {
           <div className='col-1'>Amount</div>
           <div className='col-2'>Note</div>
           <div className='col-3'>Date</div>
+          <div className='col-4'></div>
         </div>
         <div className='table-scroll'>
           <ul className='table'>
@@ -99,6 +100,7 @@ const Finance = ({ user }: { user: User}) => {
                 <div className='col-1'>{debt.amount}</div>
                 <div className='col-2'>{debt.note}</div>
                 <div className='col-3'>{formatDate(new Date(debt.date))}</div>
+                <div className='col-4'><DeleteOutline className='debt-icon' /></div>
               </li>
             ))}
           </ul>
@@ -109,14 +111,14 @@ const Finance = ({ user }: { user: User}) => {
           <input className='insert-input' id='amount' name='amount' type='number' required></input>
         </div>
         <div className='col-2'>
-          <input className='insert-input' id='note' name='note' type='text' required></input>
+          <input className='insert-input' id='note' name='note' type='text' autoComplete='off' required></input>
         </div>
         <div className='col-3'>
           <div>
             {formatDate(new Date())}
           </div>
         </div>
-        <div>
+        <div className='col-4'>
           <button type='submit'>+</button>
         </div>
       </form>
