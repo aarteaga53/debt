@@ -56,6 +56,10 @@
     margin-right: 25px;
 }
 
+@media only screen and (max-width: 768px)  {
+    .nav { height: 10vh; }
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1800px)  {
     .nav { height: 8vh; }
 }

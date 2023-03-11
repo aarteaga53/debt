@@ -35,6 +35,7 @@ body {
   width: 60vw;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .about-box {
@@ -45,8 +46,8 @@ body {
 
 .icon-image {
   border-radius: 50%;
-  height: 20vh;
-  width: 20vh;
+  height: 10vw;
+  width: 10vw;
   object-fit: cover;
 }
 
@@ -100,12 +101,21 @@ body {
 @media only screen and (max-width: 768px)  {
   .page-body { top: 10vh; height: 90vh; }
 
+  .about { width: 90vw; height: 80vh; flex-direction: column; }
+
+  .icon-image { height: 30vw; width: 30vw; }
+
+  .wave svg { width: calc(225% + 1.3px); }
+
+  .wave-opacity svg { width: calc(225% + 1.3px); }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1800px)  {
   .page-body { top: 8vh; height: 92vh; }
 
-  .welcome { width: 50vw; height: 40vh; }
+  .about { width: 80vw; }
+
+  .icon-image { height: 15vw; width: 15vw; }
 
   .wave svg { height: 25vh; }
 
